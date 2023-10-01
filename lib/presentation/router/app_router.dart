@@ -44,15 +44,15 @@ class AppRouter {
   /// Therefore for we to stack pages on each other every page has to handle it's own data and state
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case Splash.routeName:
-        return _getPageRoute(const Splash());
+      case SplashScreen.routeName:
+        return _getPageRoute(const SplashScreen());
       case HomeScreen.routeName:
         return _getPageRoute(const HomeScreen());
       case CreateDocument.routeName:
         return _getPageRoute(const CreateDocument());
 
       default:
-        return _getPageRoute(const Splash());
+        return _getPageRoute(const SplashScreen());
     }
   }
 }

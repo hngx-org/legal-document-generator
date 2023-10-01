@@ -68,14 +68,14 @@ class _CreateDocumentState extends State<CreateDocument> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
-          backgroundColor: AppColors.deepPeach,
+          backgroundColor: AppColor.deepPeach,
           leading: IconButton(
               onPressed: (){
                 BaseNavigator.pop();
               },
-              icon: Icon(Icons.arrow_back_outlined, color: AppColors.white,)),
+              icon: Icon(Icons.arrow_back_outlined, color: AppColor.white,)),
           title: const Text(
             'Create New Document',
             style: TextStyle(color: Colors.white),
@@ -105,7 +105,7 @@ class _CreateDocumentState extends State<CreateDocument> {
                         fetchData2();
                       },
                       buttonText: 'Create Document',
-                      backgroundColor: AppColors.deepPeach,
+                      backgroundColor: AppColor.deepPeach,
                     )),
               )
             ],
