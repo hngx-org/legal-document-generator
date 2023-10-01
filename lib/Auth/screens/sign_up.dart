@@ -35,12 +35,12 @@ class _SignUpState extends State<SignUp> {
                   child: Column(
                 children: [
                   Container(
-                    height: 72,
-                    width: 72,
+                    height: 200,
+                    width: 180,
                     decoration: const BoxDecoration(
                         image: DecorationImage(
                       fit: BoxFit.fill,
-                      image: AssetImage('assets/images/sub.jpg'),
+                      image: AssetImage('assets/images/login.png'),
                     )),
                   ),
                 ],
@@ -52,7 +52,7 @@ class _SignUpState extends State<SignUp> {
                 child: Text(
                   'Create Account',
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 20,
                     fontWeight: FontWeight.w400,
                     color: Colors.grey,
                   ),
@@ -72,64 +72,33 @@ class _SignUpState extends State<SignUp> {
                   ),
                 ),
                 child: TextFormField(
-                  controller: firstNameController,
+                  controller: lastNameController,
                   style: const TextStyle(color: Colors.white),
                   cursorColor: Colors.white,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.person_outline_rounded,
-                        color: Colors.grey),
-                    labelText: "First Name",
+                    prefixIcon: const Icon(
+                      Icons.person_outline_rounded,
+                      color: Colors.grey,
+                    ),
+                    labelText: "Surname",
                     labelStyle: TextStyle(color: Colors.black),
                     filled: true,
                     focusedBorder: InputBorder.none,
                     enabledBorder: InputBorder.none,
-                    //fillColor: Colors.black,
+                    fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Container(
-                  width: 382,
-                  height: 56,
-                  // padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                  decoration: ShapeDecoration(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  child: TextFormField(
-                    controller: lastNameController,
-                    style: const TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(
-                        Icons.person_outline_rounded,
-                        color: Colors.grey,
-                      ),
-                      labelText: "Surname",
-                      labelStyle: TextStyle(color: Colors.black),
-                      filled: true,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                ),
+              SizedBox(
+                height: 25,
               ),
               Container(
                 width: 382,
                 height: 56,
-                // padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(width: 1),
@@ -161,7 +130,6 @@ class _SignUpState extends State<SignUp> {
               Container(
                 width: 382,
                 height: 56,
-                // padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 decoration: ShapeDecoration(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(width: 1),
