@@ -51,10 +51,10 @@ class CustomTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: Colors.white,
                 border: Border.all(
-                    color: AppColors.black.withOpacity(0.7)),
+                    color: AppColor.black.withOpacity(0.7)),
                 boxShadow: [
                   BoxShadow(
-                      color: AppColors.black.withOpacity(0.8),
+                      color: AppColor.black.withOpacity(0.8),
                       blurRadius: 1,
                       offset: const Offset(1, 2))
                 ]),
@@ -76,13 +76,13 @@ class CustomTextField extends StatelessWidget {
               decoration: InputDecoration(
                   prefixIcon: prefixIcon != null ? Icon(
                     prefixIcon,
-                    color: AppColors.black
+                    color: AppColor.black
                   ) : null,
                   suffixIcon: GestureDetector(
                       onTap: iconAction,
                       child: Icon(
                         icon,
-                        color:AppColors.black,
+                        color:AppColor.black,
                       )),
                   hintText: hintText,
                   hintStyle: CustomTextStyles.hintStyle,

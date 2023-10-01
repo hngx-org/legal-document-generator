@@ -22,9 +22,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.backgroundColor,
+        backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
-          backgroundColor: AppColors.deepPeach,
+          backgroundColor: AppColor.deepPeach,
           title: const Text(
             'Legal Docs Generator',
             style: TextStyle(color: Colors.white),
@@ -34,18 +34,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {},
                 icon: Icon(
                   Icons.person,
-                  color: AppColors.white,
+                  color: AppColor.white,
                 ))
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.deepPeach,
+          backgroundColor: AppColor.deepPeach,
           onPressed: (){
             BaseNavigator.pushNamed(
               CreateDocument.routeName,
             );
           },
-          child:  Icon(Icons.add, color: AppColors.white,),
+          child:  Icon(Icons.add, color: AppColor.white,),
 
         ),
         body: Padding(
@@ -78,22 +78,22 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 10,
               ),
               DocumentCard(
-                color: AppColors.peach,
+                color: AppColor.peach,
                 title: 'Generate a Legal Contract',
                 icon: AppIcons.legalDocIcon,
               ),
               DocumentCard(
-                color: AppColors.purple,
+                color: AppColor.purple,
                 title: 'Generate a Last Will & Testament',
                 icon: AppIcons.legalDocIcon,
               ),
               DocumentCard(
-                color: AppColors.brown,
+                color: AppColor.brown,
                 title: 'Generate a Court Document',
                 icon: AppIcons.legalDocIcon,
               ),
               DocumentCard(
-                color: AppColors.green,
+                color: AppColor.green,
                 title: 'Generate a Corporate Document',
                 icon: AppIcons.legalDocIcon,
               )

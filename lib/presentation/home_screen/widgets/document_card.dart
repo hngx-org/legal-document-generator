@@ -20,8 +20,8 @@ class DocumentCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      color: AppColors.backgroundColor,
-      surfaceTintColor: AppColors.backgroundColor,
+      color: AppColor.backgroundColor,
+      surfaceTintColor: AppColor.backgroundColor,
       child: ListTile(
         leading: Container(
           height: 40,
@@ -31,7 +31,7 @@ class DocumentCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 color: color
             ),
-            child: Image.asset(icon, fit: BoxFit.fitHeight, color: AppColors.white,),),
+            child: Image.asset(icon, fit: BoxFit.fitHeight, color: AppColor.white,),),
         title: Text(title),
       ),
     );

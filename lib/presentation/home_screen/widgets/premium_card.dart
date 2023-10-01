@@ -12,7 +12,7 @@ class PremiumCard extends StatelessWidget {
     return Card(
       elevation: 5,
       shadowColor: Colors.grey,
-      color: AppColors.peach2,
+      color: AppColor.peach2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
