@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:legal_document_generator/components/constants/app_colors.dart';
 import 'package:legal_document_generator/presentation/onBoarding_screen/onBoarding_screen.dart';
+import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     controller = AnimationController(
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       vsync: this,
     );
 
@@ -41,9 +42,8 @@ class _SplashScreenState extends State<SplashScreen>
       setState(() {});
       if (controller.isCompleted) {
         // Use Future.delayed to delay navigation until after the animation.
-        Future.delayed(Duration(milliseconds: 1000), () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (_) => OnBoardingScreen()));
+        Future.delayed(const Duration(milliseconds: 1000), () {
+         BaseNavigator.pushNamed(OnBoardingScreen.routeName);
         });
       }
     });
@@ -59,53 +59,58 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorAnimation.value,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(
-            height: 40.h,
-          ),
-          Column(
+      body: ScreenUtilInit(
+        builder: (context, child){
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              SizedBox(
+                height: 40.h,
+              ),
+              Column(
                 children: [
-                  Text(
-                    'LegalDocGen',
-                    style: TextStyle(
-                      color: textColorAnimation.value,
-                      fontFamily: 'Onest',
-                      fontWeight: FontWeight.w800,
-                      fontSize: 30.sp,
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'LegalDocGen',
+                        style: TextStyle(
+                          color: textColorAnimation.value,
+                          fontFamily: 'Onest',
+                          fontWeight: FontWeight.w800,
+                          fontSize: 30.sp,
+                        ),
+                      ),
+                      Icon(
+                        Icons.edit_document,
+                        color: textColorAnimation.value,
+                        size: 33.r,
+                      )
+                    ],
                   ),
-                  Icon(
-                    Icons.edit_document,
+                  SpinKitSpinningLines(
                     color: textColorAnimation.value,
-                    size: 33.r,
-                  )
+                    size: 30.r,
+                  ),
                 ],
               ),
-              SpinKitSpinningLines(
-                color: textColorAnimation.value,
-                size: 30.r,
-              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Text(
+                  'Version:- 1.0.0',
+                  style: TextStyle(
+                    color: textColorAnimation.value,
+                    fontFamily: 'Onest',
+                    fontWeight: FontWeight.w800,
+                    fontSize: 10.sp,
+                  ),
+                ),
+              )
             ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
-              'Version:- 1.0.0',
-              style: TextStyle(
-                color: textColorAnimation.value,
-                fontFamily: 'Onest',
-                fontWeight: FontWeight.w800,
-                fontSize: 10.sp,
-              ),
-            ),
-          )
-        ],
-      ),
+          );
+        },
+        designSize: const Size(428, 926),
+      )
     );
   }
 }

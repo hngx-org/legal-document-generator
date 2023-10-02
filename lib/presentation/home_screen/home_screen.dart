@@ -24,22 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
-          backgroundColor: AppColor.deepPeach,
+          backgroundColor: AppColor.secondaryColor,
           title: const Text(
             'Legal Docs Generator',
             style: TextStyle(color: Colors.white),
           ),
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.person,
-                  color: AppColor.white,
-                ))
-          ],
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColor.deepPeach,
+          backgroundColor: AppColor.secondaryColor,
           onPressed: (){
             BaseNavigator.pushNamed(
               CreateDocument.routeName,

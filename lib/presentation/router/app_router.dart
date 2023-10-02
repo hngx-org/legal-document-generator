@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:legal_document_generator/presentation/create_document/create_document_screen.dart';
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
+import 'package:legal_document_generator/presentation/onBoarding_screen/onBoarding_screen.dart';
 
 import '../splash_screen/splash_screen.dart';
 
@@ -50,6 +51,8 @@ class AppRouter {
         return _getPageRoute(const HomeScreen());
       case CreateDocument.routeName:
         return _getPageRoute(const CreateDocument());
+      case OnBoardingScreen.routeName:
+        return _getPageRoute(const OnBoardingScreen());
 
       default:
         return _getPageRoute(const SplashScreen());

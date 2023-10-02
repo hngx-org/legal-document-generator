@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:legal_document_generator/components/constants/widgets/reusableButton.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
+import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../components/constants/app_colors.dart';
@@ -84,8 +86,10 @@ class IntroPage extends StatelessWidget {
                 width: 200.w,
                 fontSize: 16.sp,
                 function: () {
-                  controller.nextPage(
-                      duration: Duration(milliseconds: 500),
+                  onLastPage
+                      ?  BaseNavigator.pushNamed(HomeScreen.routeName)
+                      : controller.nextPage(
+                      duration: const Duration(milliseconds: 500),
                       curve: Curves.easeIn);
                 },
               ),

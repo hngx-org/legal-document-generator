@@ -70,7 +70,7 @@ class _CreateDocumentState extends State<CreateDocument> {
     return Scaffold(
         backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
-          backgroundColor: AppColor.deepPeach,
+          backgroundColor: AppColor.secondaryColor,
           leading: IconButton(
               onPressed: (){
                 BaseNavigator.pop();
@@ -105,7 +105,7 @@ class _CreateDocumentState extends State<CreateDocument> {
                         fetchData2();
                       },
                       buttonText: 'Create Document',
-                      backgroundColor: AppColor.deepPeach,
+                      backgroundColor: AppColor.secondaryColor,
                     )),
               )
             ],

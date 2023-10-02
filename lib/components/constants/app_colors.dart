@@ -5,7 +5,7 @@ class AppColor {
   static Color peach = const Color(0xffff9a8a);
   static Color peach2 = const Color(0xffFFE5B4);
   static Color peach3 = const Color(0xffFFE6B4);
-  static Color deepPeach = const Color(0xffFF7F4F);
+  // static Color secondaryColor = const Color(0xffFF7F4F);
   static Color purple = Colors.purple;
   static Color green = Colors.green;
   static Color brown = Colors.brown;
