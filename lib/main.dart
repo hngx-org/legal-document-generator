@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:legal_document_generator/Auth/screens/splash_screen.dart';
-import 'package:legal_document_generator/Subscribtion/subscription.dart';
+import 'package:legal_document_generator/presentation/auth/screens/splash_screen.dart';
+import 'package:legal_document_generator/presentation/subscription/subscription.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/router/app_router.dart';
