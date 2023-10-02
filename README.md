@@ -1,17 +1,18 @@
-# legal_document_generator
+# LEGAL DOCUMENTS GENERATOR
+This is the codebase for legal generator app made by built by @Marshal Moses, @VCTR and @Olankan.
 
-A new Flutter project.
+>**NOTE**: Try to read the comments provided in the code if you do not have an understanding of what it does and you're advised to browse through definitions of functions to know what it's about and how it wirks under the hood.
 
-## Getting Started
+>**NOTE**: Try not to edit what you have no undertanding of. If you need to make changes to a file or a structure and you have no understanding of it, reach out to your teammates and they'll surely find an answer for you.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## App Structure
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# legal-document-generator
+To work on the app:
+- Fork the repo
+- Make sure your flutter sdk is up to date
+- Fetch the packages using flutter pub get
+- Always perform git pull to keep your local up to date
+- Perform your task
+- Resolve every error before making PR (including linting error -- use dart fix --apply to fix)
+- Make a pull request and await merge, pending merge conflicts.
