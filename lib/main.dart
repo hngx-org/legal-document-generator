@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/router/app_router.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
-import 'package:legal_document_generator/presentation/splash_screen/splash_screen.dart';
 
 Future<void> main() async {
   //This is the main entry point of the app. This is where services are initialized
@@ -85,7 +85,7 @@ class MainApp extends StatelessWidget {
 
       /// Follow Definitions
       onGenerateRoute: AppRouter.onGenerateRoute,
-      initialRoute: SplashScreen.routeName,
+      initialRoute: HomeScreen.routeName,
     );
   }
 }
