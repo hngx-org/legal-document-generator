@@ -41,14 +41,57 @@ class _CreateDocumentState extends State<CreateDocument> {
   }
   String responseText = '';
 
-  void fetchData2() async {
-    final prompt = 'Generate a legal document for a contract between parties.';
-    final http.Response response = await openAI.postToCompletions(prompt);
-    print(response.body);
+  Future<void> postToCompletions() async {
+    final messages = [
+      {'role': 'system', 'content': 'You are a helpful assistant.'},
+      {
+        'role': 'user',
+        'content': 'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and keep the chat restricted to the conversation. If you\'re asked anything beyond the scope of the topic, decline to answer.'
+      },
+    ];
 
-    setState(() {
-      responseText = response.body;
-    });
+    final url = 'https://api.openai.com/v1/chat/completions';
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer $apiKey',
+    };
+
+    final body = {
+      'messages': messages,
+      'model': 'gpt-3.5-turbo',
+      'max_tokens': 1024, // Customize this as needed
+    };
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: json.encode(body),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      final text = responseData['choices'][0]['message']['content'];
+      print(response.body);
+      return text;
+    } else {
+      print(response.body);
+      print(response.statusCode);
+    }
+  }
+
+
+  void fetchData2() async {
+   try{
+     final prompt = 'Generate a legal document for a contract between parties.';
+     final http.Response response = await openAI.postToCompletions(prompt);
+     print(response.statusCode);
+
+     setState(() {
+       responseText = response.body;
+     });
+   }catch(e){
+     print('failed');
+   }
   }
 
 
@@ -102,7 +145,7 @@ class _CreateDocumentState extends State<CreateDocument> {
                     alignment: Alignment.bottomCenter,
                     child: CustomButton(
                       onPressed: (){
-                        fetchData2();
+                        postToCompletions();
                       },
                       buttonText: 'Create Document',
                       backgroundColor: AppColor.secondaryColor,
