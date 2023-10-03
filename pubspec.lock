@@ -185,8 +185,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-
-=======
   file:
     dependency: transitive
     description:
@@ -354,15 +352,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.1"
-  open_file:
-    dependency: "direct main"
-    description:
-      name: open_file
-      sha256: a5a32d44acb7c899987d0999e1e3cbb0a0f1adebbf41ac813ec6d2d8faa0af20
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.3.2"
-=======
   mockito:
     dependency: transitive
     description:
@@ -371,6 +360,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.2"
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      sha256: a5a32d44acb7c899987d0999e1e3cbb0a0f1adebbf41ac813ec6d2d8faa0af20
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.2"
   package_config:
     dependency: transitive
     description:
@@ -395,7 +392,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
-=======
   path_provider:
     dependency: "direct main"
     description:
@@ -500,7 +496,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.4.0"
-=======
   platform:
     dependency: transitive
     description:
@@ -525,15 +520,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.7.3"
-  qr:
-    dependency: transitive
-    description:
-      name: qr
-      sha256: "64957a3930367bf97cc211a5af99551d630f2f4625e38af10edd6b19131b64b3"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.1"
-=======
   pub_semver:
     dependency: transitive
     description:
@@ -542,6 +528,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      sha256: "64957a3930367bf97cc211a5af99551d630f2f4625e38af10edd6b19131b64b3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.1"
   shared_preferences:
     dependency: transitive
     description:
@@ -731,7 +725,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.3.0"
-=======
   yaml:
     dependency: transitive
     description:

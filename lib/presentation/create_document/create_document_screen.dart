@@ -25,22 +25,6 @@ class _CreateDocumentState extends State<CreateDocument> {
   final String apiKey = dotenv.env['open_ai_key']!;
   late final Api api;
   late final openAI;
-
-
-  void fetchData() async {
-    try {
-      String prompt =
-          'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and keep the chat res';
-      final apiResponse = await api.postToCompletions(prompt);
-      late String responseText;
-      responseText = apiResponse.data['text'];
-      print(responseText);
-    } catch (e) {}
-
-    setState(() {});
-  }
-
-=======
   bool isLoading = false;
 
   String responseText = '';
@@ -94,36 +78,6 @@ class _CreateDocumentState extends State<CreateDocument> {
     }
   }
 
-  void fetchData2() async {
-
-    try {
-      final prompt =
-          'Generate a legal document for a contract between parties.';
-      final http.Response response = await openAI.postToCompletions(prompt);
-      print(response.statusCode);
-=======
-   try{
-     const prompt = 'Generate a legal document for a contract between parties.';
-     final http.Response response = await openAI.postToCompletions(prompt);
-     print(response.statusCode);
-
-     setState(() {
-       responseText = response.body;
-     });
-   }catch(e){
-     print('failed');
-   }
-  }
-
-
-      setState(() {
-        responseText = response.body;
-      });
-    } catch (e) {
-      print('failed');
-    }
-  }
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -168,7 +122,6 @@ class _CreateDocumentState extends State<CreateDocument> {
           child: Column(
             children: [
               CustomTextField(
-
                 label: 'Legal Document Type',
                 controller: documentTypeController,
                 hintText: 'Example: Employment Contract',
@@ -181,67 +134,40 @@ class _CreateDocumentState extends State<CreateDocument> {
                     'Example: Employer name is ABC & Employee name is JOHN DOE',
                 onChanged: (value) {},
               ),
-              SizedBox(
-                height: 360.h,
-              ),
 
-              ReusableButton(
-                  // text: 'Convert to Pdf',
-                  text: 'Generate Doc',
-                  height: 30.h,
-                  width: 160.w,
-                  fontSize: 16.sp,
-                  onClicked: () async {
-                    final pdfFile =
-                        await Pdf_Api.generateCenteredText('Legal Document');
+              // ReusableButton(
+              //     // text: 'Convert to Pdf',
+              //     text: 'Generate Doc',
+              //     height: 30.h,
+              //     width: 160.w,
+              //     fontSize: 16.sp,
+              //     onClicked: () async {
+              //       final pdfFile =
+              //           await Pdf_Api.generateCenteredText('Legal Document');
+              //
+              //       Pdf_Api.openFile(pdfFile);
+              //       Future.delayed(const Duration(milliseconds: 1000), () {
+              //         Navigator.pop(context);
+              //       });
+              //     }),
 
-                    Pdf_Api.openFile(pdfFile);
-                    Future.delayed(const Duration(milliseconds: 1000), () {
-                      Navigator.pop(context);
-                    });
-                  }),
-
-              // Expanded(
-              //   child: Align(
-              //       alignment: Alignment.bottomCenter,
-              //       child: CustomButton(
-              //         onPressed: () {
-              //           postToCompletions();
-              //         },
-              //         buttonText: 'Create Document',
-              //         backgroundColor: AppColor.secondaryColor,
-              //       )),
-              // )
-=======
-               label: 'Legal Document Type',
-               controller: documentTypeController,
-               hintText: 'Example: Employment Contract',
-                onChanged: (value){},
-             ),
-            CustomTextField(
-              controller: keyPointsController,
-              label: 'Key Points',
-              hintText: 'Example: Employer name is ABC & Employee name is JOHN DOE',
-              onChanged: (value ) {  },
-            ),
-               Expanded(
+              Expanded(
                 child: Align(
                     alignment: Alignment.bottomCenter,
                     child: CustomButton(
-                      loading: isLoading,
-                      onPressed: ()async{
-                        setState(() {
-                          isLoading = true;
-                        });
-                        await postToCompletions();
-                        setState(() {
-                          isLoading = false;
-                        });
-                      },
+                        onPressed: () async {
+                          final pdfFile =
+                          await Pdf_Api.generateCenteredText('Legal Document');
+
+                          Pdf_Api.openFile(pdfFile);
+                          Future.delayed(const Duration(milliseconds: 1000), () {
+                            Navigator.pop(context);
+                          });
+                        },
                       buttonText: 'Create Document',
                       backgroundColor: AppColor.secondaryColor,
                     )),
-              )
+              ),
             ],
           ),
         ));

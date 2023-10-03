@@ -89,11 +89,7 @@ class IntroPage extends StatelessWidget {
                   fontSize: 16.sp,
                 onClicked: () {
                   onLastPage
-
-                      ? BaseNavigator.pushNamed(HomeScreen.routeName)
-=======
                       ?  BaseNavigator.pushNamed(RegistrationForm.routeName)
-
                       : controller.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn);

@@ -51,12 +51,7 @@ class CustomTextField extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Onest',
                 fontSize: 16.sp,),
-            ),
-=======
-          Text(
-            label,
-            style: CustomTextStyles.normalWhiteText,
-          ),
+            )),
           const SizedBox(height: 5),
           Container(
             decoration: BoxDecoration(
@@ -71,10 +66,6 @@ class CustomTextField extends StatelessWidget {
                       offset: const Offset(1, 2))
                 ]),
             child: TextFormField(
-
-              
-              maxLines: 10,
-=======
               maxLines: obscureText ? 1 : 10,
               minLines: 1,
               obscuringCharacter: '*',

@@ -37,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
               fontSize: 22,
             ),
           ),
+          leading: Icon(Icons.menu),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColor.secondaryColor,
@@ -48,38 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Icon(
             Icons.add,
             color: AppColor.primaryColor,
-=======
-            color: AppColor.white,
           ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10),
-          child: empty
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(
-
-                        height: 150,
-                        width: 150,
-                        child: Image.asset(AppGif.noHistory)),
-                    Center(
-                        child: const Text(
-                            'No document created. Tap the plus icon below to create a new document'))
-=======
-                        height: 150.h,
-                        width: 150.w,
-                        child: Lottie.asset(AppAnimations.noHistory)),
-                    Center(
-                        child: Text(
-                      'No document created. Tap the plus icon below to create a new document',
-                      style: CustomTextStyles.normalWhiteText,
-                    ))
-
-                  ],
-                )
-              : Column(
+          child: Column(
                   children: [
                     const PremiumCard(),
                     const SizedBox(
@@ -87,19 +61,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Align(
                         alignment: Alignment.centerLeft,
-
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
                             'Pick Document Type',
                             style: CustomTextStyles.headerTextStyle,
-                          ),
-=======
-                        child: Text(
-                          'Pick Document Type',
-                          style: CustomTextStyles.headerTextStyle,
-
-                        )),
+                          ),)),
                     const SizedBox(
                       height: 10,
                     ),
