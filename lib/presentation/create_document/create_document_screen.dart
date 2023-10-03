@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:legal_document_generator/components/constants/widgets/custom_button.dart';
 import 'package:legal_document_generator/components/constants/widgets/custom_textfield.dart';
+import 'package:legal_document_generator/components/constants/widgets/reusableButton.dart';
+import 'package:legal_document_generator/presentation/pdf_screen/pdf_Screen.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import '../../components/constants/app_colors.dart';
 import '../../data/api_implementation.dart';
 import 'package:http/http.dart' as http;
-
 
 class CreateDocument extends StatefulWidget {
   static const String routeName = "create-document-screen";
@@ -25,20 +27,18 @@ class _CreateDocumentState extends State<CreateDocument> {
   late final openAI;
 
   void fetchData() async {
-   try{
-     String prompt = 'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and keep the chat res';
-     final apiResponse = await api.postToCompletions(prompt);
-     late String responseText;
-     responseText = apiResponse.data['text'];
-     print(responseText);
-   }catch(e){
+    try {
+      String prompt =
+          'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and keep the chat res';
+      final apiResponse = await api.postToCompletions(prompt);
+      late String responseText;
+      responseText = apiResponse.data['text'];
+      print(responseText);
+    } catch (e) {}
 
-   }
-
-    setState(() {
-
-    });
+    setState(() {});
   }
+
   String responseText = '';
 
   Future<void> postToCompletions() async {
@@ -46,7 +46,8 @@ class _CreateDocumentState extends State<CreateDocument> {
       {'role': 'system', 'content': 'You are a helpful assistant.'},
       {
         'role': 'user',
-        'content': 'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and keep the chat restricted to the conversation. If you\'re asked anything beyond the scope of the topic, decline to answer.'
+        'content':
+            'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and keep the chat restricted to the conversation. If you\'re asked anything beyond the scope of the topic, decline to answer.'
       },
     ];
 
@@ -79,21 +80,20 @@ class _CreateDocumentState extends State<CreateDocument> {
     }
   }
 
-
   void fetchData2() async {
-   try{
-     final prompt = 'Generate a legal document for a contract between parties.';
-     final http.Response response = await openAI.postToCompletions(prompt);
-     print(response.statusCode);
+    try {
+      final prompt =
+          'Generate a legal document for a contract between parties.';
+      final http.Response response = await openAI.postToCompletions(prompt);
+      print(response.statusCode);
 
-     setState(() {
-       responseText = response.body;
-     });
-   }catch(e){
-     print('failed');
-   }
+      setState(() {
+        responseText = response.body;
+      });
+    } catch (e) {
+      print('failed');
+    }
   }
-
 
   @override
   void dispose() {
@@ -102,12 +102,14 @@ class _CreateDocumentState extends State<CreateDocument> {
     keyPointsController.dispose();
     super.dispose();
   }
+
   @override
   void initState() {
     super.initState();
     api = Api(apiKey);
     openAI = OpenAI(apiKey);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,13 +117,21 @@ class _CreateDocumentState extends State<CreateDocument> {
         appBar: AppBar(
           backgroundColor: AppColor.secondaryColor,
           leading: IconButton(
-              onPressed: (){
+              onPressed: () {
                 BaseNavigator.pop();
               },
-              icon: Icon(Icons.arrow_back_outlined, color: AppColor.white,)),
+              icon: Icon(
+                Icons.arrow_back_outlined,
+                color: Color(0XFF4D426D),
+              )),
           title: const Text(
             'Create New Document',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Color(0XFF4D426D),
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Onest',
+              fontSize: 22,
+            ),
           ),
         ),
         body: Padding(
@@ -129,28 +139,49 @@ class _CreateDocumentState extends State<CreateDocument> {
           child: Column(
             children: [
               CustomTextField(
-               label: 'Legal Document Type',
-               controller: documentTypeController,
-               hintText: 'Example: Employment Contract',
-                onChanged: (value){},
-             ),
-            CustomTextField(
-              controller: keyPointsController,
-              label: 'Key Points',
-              hintText: 'Example: Employer name is ABC & Employee name is JOHN DOE',
-              onChanged: (value ) {  },
-            ),
-               Expanded(
-                child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: CustomButton(
-                      onPressed: (){
-                        postToCompletions();
-                      },
-                      buttonText: 'Create Document',
-                      backgroundColor: AppColor.secondaryColor,
-                    )),
-              )
+                label: 'Legal Document Type',
+                controller: documentTypeController,
+                hintText: 'Example: Employment Contract',
+                onChanged: (value) {},
+              ),
+              CustomTextField(
+                controller: keyPointsController,
+                label: 'Key Points',
+                hintText:
+                    'Example: Employer name is ABC & Employee name is JOHN DOE',
+                onChanged: (value) {},
+              ),
+              SizedBox(
+                height: 360.h,
+              ),
+
+              ReusableButton(
+                  // text: 'Convert to Pdf',
+                  text: 'Generate Doc',
+                  height: 30.h,
+                  width: 160.w,
+                  fontSize: 16.sp,
+                  onClicked: () async {
+                    final pdfFile =
+                        await Pdf_Api.generateCenteredText('Legal Document');
+
+                    Pdf_Api.openFile(pdfFile);
+                    Future.delayed(const Duration(milliseconds: 1000), () {
+                      Navigator.pop(context);
+                    });
+                  }),
+
+              // Expanded(
+              //   child: Align(
+              //       alignment: Alignment.bottomCenter,
+              //       child: CustomButton(
+              //         onPressed: () {
+              //           postToCompletions();
+              //         },
+              //         buttonText: 'Create Document',
+              //         backgroundColor: AppColor.secondaryColor,
+              //       )),
+              // )
             ],
           ),
         ));

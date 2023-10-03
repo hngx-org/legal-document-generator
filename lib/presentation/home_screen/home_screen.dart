@@ -18,79 +18,92 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool empty = true;
+  bool empty = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
+          iconTheme: IconThemeData(color: AppColor.primaryColor),
           backgroundColor: AppColor.secondaryColor,
           title: const Text(
-            'Legal Docs Generator',
-            style: TextStyle(color: Colors.white),
+            'LegalDocGen',
+            style: TextStyle(
+              color: Color(0XFF4D426D),
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Onest',
+              fontSize: 22,
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColor.secondaryColor,
-          onPressed: (){
+          onPressed: () {
             BaseNavigator.pushNamed(
               CreateDocument.routeName,
             );
           },
-          child:  Icon(Icons.add, color: AppColor.white,),
-
+          child: Icon(
+            Icons.add,
+            color: AppColor.primaryColor,
+          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10),
           child: empty
               ? Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(
-                      height: 150,
-                      width: 150,
-                      child: Image.asset(AppGif.noHistory)),
-                  Center(child: const Text('No document created. Tap the plus icon below to create a new document'))
-                ],
-              )
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                        height: 150,
+                        width: 150,
+                        child: Image.asset(AppGif.noHistory)),
+                    Center(
+                        child: const Text(
+                            'No document created. Tap the plus icon below to create a new document'))
+                  ],
+                )
               : Column(
-            children: [
-              const PremiumCard(),
-              const SizedBox(
-                height: 20,
-              ),
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Pick Document Type',
-                    style: CustomTextStyles.headerTextStyle,
-                  )),
-              const SizedBox(
-                height: 10,
-              ),
-              DocumentCard(
-                color: AppColor.peach,
-                title: 'Generate a Legal Contract',
-                icon: AppIcons.legalDocIcon,
-              ),
-              DocumentCard(
-                color: AppColor.purple,
-                title: 'Generate a Last Will & Testament',
-                icon: AppIcons.legalDocIcon,
-              ),
-              DocumentCard(
-                color: AppColor.brown,
-                title: 'Generate a Court Document',
-                icon: AppIcons.legalDocIcon,
-              ),
-              DocumentCard(
-                color: AppColor.green,
-                title: 'Generate a Corporate Document',
-                icon: AppIcons.legalDocIcon,
-              )
-            ],
-          ),
+                  children: [
+                    const PremiumCard(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            'Pick Document Type',
+                            style: CustomTextStyles.headerTextStyle,
+                          ),
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    DocumentCard(
+                      color: AppColor.peach,
+                      title: 'Generate a Legal Contract',
+                      icon: AppIcons.legalDocIcon,
+                    ),
+                    DocumentCard(
+                      color: AppColor.purple,
+                      title: 'Generate a Last Will & Testament',
+                      icon: AppIcons.legalDocIcon,
+                    ),
+                    DocumentCard(
+                      color: AppColor.brown,
+                      title: 'Generate a Court Document',
+                      icon: AppIcons.legalDocIcon,
+                    ),
+                    DocumentCard(
+                      color: AppColor.green,
+                      title: 'Generate a Corporate Document',
+                      icon: AppIcons.legalDocIcon,
+                    )
+                  ],
+                ),
         ));
   }
 }

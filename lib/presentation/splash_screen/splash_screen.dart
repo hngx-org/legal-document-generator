@@ -109,7 +109,7 @@ class _SplashScreenState extends State<SplashScreen>
             ],
           );
         },
-        designSize: const Size(428, 926),
+        // designSize: const Size(428, 926),
       )
     );
   }

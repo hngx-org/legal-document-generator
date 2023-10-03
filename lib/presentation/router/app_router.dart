@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:legal_document_generator/presentation/create_document/create_document_screen.dart';
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/onBoarding_screen/onBoarding_screen.dart';
+import 'package:legal_document_generator/presentation/pdf_screen/nav_to_pdf_screen.dart';
 
 import '../splash_screen/splash_screen.dart';
-
 
 class AppRouter {
   /// A custom screen navigation handler that handles the animation of moving from one screen to another
   /// The current setting sets up the app to mimic the navigation on IOS devices on every of our app variant
   ///
   static _getPageRoute(
-      Widget child, [
-        String? routeName,
-        dynamic args,
-      ]) =>
+    Widget child, [
+    String? routeName,
+    dynamic args,
+  ]) =>
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) => child,
         settings: RouteSettings(
@@ -53,6 +53,8 @@ class AppRouter {
         return _getPageRoute(const CreateDocument());
       case OnBoardingScreen.routeName:
         return _getPageRoute(const OnBoardingScreen());
+      case NavToPdf.routeName:
+        return _getPageRoute(const NavToPdf());
 
       default:
         return _getPageRoute(const SplashScreen());

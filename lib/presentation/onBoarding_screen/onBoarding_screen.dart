@@ -69,7 +69,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 40).r,
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 50).r,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

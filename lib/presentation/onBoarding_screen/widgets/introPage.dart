@@ -3,11 +3,11 @@ import 'package:legal_document_generator/components/constants/widgets/reusableBu
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
+import 'package:legal_document_generator/presentation/pdf_screen/nav_to_pdf_screen.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../components/constants/app_colors.dart';
-
 
 class IntroPage extends StatelessWidget {
   const IntroPage({
@@ -54,7 +54,7 @@ class IntroPage extends StatelessWidget {
                           color: AppColor.TextColor,
                           fontFamily: 'Onest',
                           fontWeight: FontWeight.w700,
-                          fontSize: 20.sp),
+                          fontSize: 24.sp),
                     ),
                     Padding(
                       padding:
@@ -82,15 +82,15 @@ class IntroPage extends StatelessWidget {
               SizedBox(height: 15.h),
               ReusableButton(
                 text: onLastPage ? 'Get Started' : 'Continue',
-                height: 50.h,
-                width: 200.w,
-                fontSize: 16.sp,
-                function: () {
+                height: 40.h,
+                  width: 180.w,
+                  fontSize: 16.sp,
+                onClicked: () {
                   onLastPage
-                      ?  BaseNavigator.pushNamed(HomeScreen.routeName)
+                      ? BaseNavigator.pushNamed(HomeScreen.routeName)
                       : controller.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeIn);
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn);
                 },
               ),
             ],

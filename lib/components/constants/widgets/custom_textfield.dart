@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:legal_document_generator/components/constants/text_styles.dart';
 import '../app_colors.dart';
 
@@ -38,27 +39,35 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10).r,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0).r,
+            child: Text(
+              label,
+              style: TextStyle(color: AppColor.TextColor,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Onest',
+                fontSize: 16.sp,),
+            ),
           ),
           const SizedBox(height: 5),
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
+                borderRadius: BorderRadius.circular(15.r),
+                color: AppColor.peach2,
                 border: Border.all(
                     color: AppColor.black.withOpacity(0.7)),
                 boxShadow: [
                   BoxShadow(
-                      color: AppColor.black.withOpacity(0.8),
+                      color: AppColor.primaryColor.withOpacity(0.8),
                       blurRadius: 1,
                       offset: const Offset(1, 2))
                 ]),
             child: TextFormField(
+              
               maxLines: 10,
               minLines: 1,
               obscuringCharacter: '*',
@@ -70,13 +79,13 @@ class CustomTextField extends StatelessWidget {
               obscureText: obscureText,
               style: const TextStyle(
                 letterSpacing: 2,
-                color: Colors.black,
+                color: Color(0XFF4D426D),
                 fontWeight: FontWeight.bold,
               ),
               decoration: InputDecoration(
                   prefixIcon: prefixIcon != null ? Icon(
                     prefixIcon,
-                    color: AppColor.black
+                    color: AppColor.primaryColor
                   ) : null,
                   suffixIcon: GestureDetector(
                       onTap: iconAction,
