@@ -20,16 +20,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool empty = true;
+  bool empty = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColor.backgroundColor,
         appBar: AppBar(
+          iconTheme: IconThemeData(color: AppColor.primaryColor),
           backgroundColor: AppColor.secondaryColor,
           title: const Text(
-            'Legal Docs Generator',
-            style: TextStyle(color: Colors.white),
+            'LegalDocGen',
+            style: TextStyle(
+              color: Color(0XFF4D426D),
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Onest',
+              fontSize: 22,
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -41,6 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
           },
           child: Icon(
             Icons.add,
+            color: AppColor.primaryColor,
+=======
             color: AppColor.white,
           ),
         ),
@@ -52,6 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(
+
+                        height: 150,
+                        width: 150,
+                        child: Image.asset(AppGif.noHistory)),
+                    Center(
+                        child: const Text(
+                            'No document created. Tap the plus icon below to create a new document'))
+=======
                         height: 150.h,
                         width: 150.w,
                         child: Lottie.asset(AppAnimations.noHistory)),
@@ -60,6 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       'No document created. Tap the plus icon below to create a new document',
                       style: CustomTextStyles.normalWhiteText,
                     ))
+
                   ],
                 )
               : Column(
@@ -70,9 +87,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Align(
                         alignment: Alignment.centerLeft,
+
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Text(
+                            'Pick Document Type',
+                            style: CustomTextStyles.headerTextStyle,
+                          ),
+=======
                         child: Text(
                           'Pick Document Type',
                           style: CustomTextStyles.headerTextStyle,
+
                         )),
                     const SizedBox(
                       height: 10,

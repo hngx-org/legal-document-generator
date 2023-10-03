@@ -5,34 +5,41 @@ class DocumentCard extends StatelessWidget {
   final Color color;
   final String icon;
   final String title;
-  const DocumentCard({
-    super.key,
-    required this.color,
-    required this.icon,
-    required this.title
-  });
+  const DocumentCard(
+      {super.key,
+      required this.color,
+      required this.icon,
+      required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
-      shadowColor: Colors.grey,
+      elevation: 1.5,
+      shadowColor: AppColor.secondaryColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      color: AppColor.backgroundColor,
+      color: AppColor.backgroundColor2,
       surfaceTintColor: AppColor.backgroundColor,
       child: ListTile(
         leading: Container(
           height: 40,
-            width: 40,
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: color
-            ),
-            child: Image.asset(icon, fit: BoxFit.fitHeight, color: AppColor.white,),),
-        title: Text(title),
+          width: 40,
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15), color: color),
+          child: Image.asset(
+            icon,
+            fit: BoxFit.fitHeight,
+            color: AppColor.white,
+          ),
+        ),
+        title: Text(
+          title,
+          style: TextStyle(
+            color: AppColor.TextColor,
+              fontFamily: 'Onest', fontWeight: FontWeight.w500, fontSize: 16),
+        ),
       ),
     );
   }

@@ -10,10 +10,10 @@ class ReusableButton extends StatelessWidget {
     required this.height,
     required this.width,
     required this.fontSize,
-    required this.function,
+    required this.onClicked,
   });
 
-  final Function()? function;
+  final Function()? onClicked;
   final double height;
   final double width;
   final double fontSize;
@@ -36,7 +36,7 @@ class ReusableButton extends StatelessWidget {
         ),
         backgroundColor: MaterialStatePropertyAll(AppColor.secondaryColor),
       ),
-      onPressed: function,
+      onPressed: onClicked,
       child: Text(
         text,
         textAlign: TextAlign.center,

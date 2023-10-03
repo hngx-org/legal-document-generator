@@ -1,5 +1,9 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
+
+export "FLUTTER_ROOT=/Users/olankan/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/olankan/Documents/GitHub/legal-document-generator"
+=======
 export "FLUTTER_ROOT=/Users/marshal/Developer/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/marshal/Desktop/legal-document-generator"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
