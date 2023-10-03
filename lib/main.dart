@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:legal_document_generator/Auth/screens/register.dart';
+import 'package:legal_document_generator/Auth/screens/sign_in.dart';
 import 'package:legal_document_generator/Auth/screens/splash_screen.dart';
 import 'package:legal_document_generator/Subscribtion/subscription.dart';
+
+import 'Auth/screens/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,13 +16,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
-      //Subscription(),
+      routes: {
+        '/': (context) => SignIn(
+              emailController: emailController,
+              successRoutePage: '/home',
+              passwordController: passwordController, // Use the route name here
+            ),
+        '/signup': (context) => const SignUp(), // Define a route for Home
+      },
+      initialRoute: '/',
     );
   }
 }
+
+      //Subscription(),
+
+// RegistrationForm(
+//               emailController: emailController,
+//               successRoutePage: '/home',
+//               nameController: nameController,
+//               passwordController: passwordController, // Use the route name here
+//             ),
+//         '/signup': (context) => const SignUp(),

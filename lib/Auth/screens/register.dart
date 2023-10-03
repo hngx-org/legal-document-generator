@@ -4,27 +4,30 @@ import 'package:hng_authentication/authentication.dart';
 import 'package:hng_authentication/widgets/rounded_bordered_textfield.dart';
 import 'package:hng_authentication/widgets/widget.dart';
 
-class SignIn extends StatefulWidget {
+class RegistrationForm extends StatefulWidget {
+  late final TextEditingController nameController;
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   final String successRoutePage;
   String btnText;
   Color btnColor;
 
-  SignIn({
+  RegistrationForm({
     super.key,
+    required this.nameController,
     required this.emailController,
     required this.passwordController,
     required this.successRoutePage,
     this.btnText = 'Submit', // Provide a default button text
-    this.btnColor = Colors.green,
+    this.btnColor =
+        Colors.green, // Allow the button color to be null (optional)
   });
 
   @override
-  State<SignIn> createState() => _SignInState();
+  _RegistrationFormState createState() => _RegistrationFormState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegistrationFormState extends State<RegistrationForm> {
   bool _obscurePassword = true;
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,10 @@ class _SignInState extends State<SignIn> {
                 const SizedBox(
                   height: 20,
                 ),
+                RoundedBorderedTextField(
+                  hintText: "Username",
+                  controller: widget.nameController,
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -94,6 +101,37 @@ class _SignInState extends State<SignIn> {
                 const SizedBox(
                   height: 20,
                 ),
+                RoundedBorderedTextField(
+                  hintText: "Confirm Password",
+                  obscureText: _obscurePassword,
+                  validator: (val) {
+                    if (val?.isEmpty ?? true) {
+                      return 'Please enter your password';
+                    } else if ((val?.length ?? 0) < 6) {
+                      return 'Password is not up to 6 characters';
+                    } else if (((val?.length ?? 0) >= 6) &&
+                        ((val ?? "") != widget.passwordController.text)) {
+                      return "Password texts don't match";
+                    } else {
+                      return null;
+                    }
+                  },
+                  // controller: widget.passwordController,
+                  isPass: true,
+                  icon: IconButton(
+                    icon: Icon(
+                      _obscurePassword
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                      color: const Color.fromRGBO(115, 106, 185, 1),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePassword = !_obscurePassword;
+                      });
+                    },
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -109,24 +147,24 @@ class _SignInState extends State<SignIn> {
                     onPressed: () async {
                       final email = (widget.emailController).text;
                       final password = (widget.passwordController).text;
-
+                      final name = widget.nameController.text;
                       final authRepository = Authentication();
-                      final data = await authRepository.signIn(email, password);
+                      final data =
+                          await authRepository.signUp(email, name, password);
 
                       if (data != null) {
                         // Registration failed, display an error message
 
                         showSnackbar(
-                            context, Colors.black, 'SignIn successful');
-                        print('Email>>> ${data.email}');
-                        print('id >>> ${data.id}');
-                        print('Name>>> ${data.name}');
-
+                            context, Colors.black, 'SignUp successful');
+                        print('sign up Email >>> ${data.email}');
+                        print('sign up id >>> ${data.id}');
+                        print('sign up created at >>> ${data.createdAt}');
                         Navigator.of(context)
                             .pushNamed(widget.successRoutePage);
                       } else {
                         print('errror:   eeeeeee');
-                        showSnackbar(context, Colors.red, 'SignIn ERROR');
+                        showSnackbar(context, Colors.red, 'SignUp ERROR');
                       }
                     },
                     child: Text(

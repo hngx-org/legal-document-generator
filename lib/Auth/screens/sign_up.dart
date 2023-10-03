@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:legal_document_generator/Auth/sign_up_model.dart';
+import 'package:hng_authentication/authentication.dart';
 
+import '../sign_up_controller.dart';
 import 'sign_in.dart';
+
+final UserController userController = UserController();
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -10,13 +15,32 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  var firstNameController = TextEditingController();
-  var lastNameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  dynamic value;
   bool _isVisible = false;
+
+  Future<void> _handleSignUp() async {
+    final name = firstNameController.text;
+    final email = emailController.text;
+    final password = passwordController.text;
+    final confirm_password = confirmPasswordController.text;
+
+    final SignUpModel? user =
+        await userController.registerUser(name, email, password);
+
+    if (user != null) {
+      // Registration successful
+      print('Registration successful');
+      print('User ID: ${user.id}');
+    } else {
+      // Registration failed
+      print('Registration failed');
+      // Display an error message to the user.
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,19 +56,21 @@ class _SignUpState extends State<SignUp> {
                 height: 50,
               ),
               Center(
-                  child: Column(
-                children: [
-                  Container(
-                    height: 200,
-                    width: 180,
-                    decoration: const BoxDecoration(
+                child: Column(
+                  children: [
+                    Container(
+                      height: 200,
+                      width: 180,
+                      decoration: const BoxDecoration(
                         image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: AssetImage('assets/images/login.png'),
-                    )),
-                  ),
-                ],
-              )),
+                          fit: BoxFit.fill,
+                          image: AssetImage('assets/images/login.png'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -61,39 +87,38 @@ class _SignUpState extends State<SignUp> {
               const SizedBox(
                 height: 21,
               ),
-              Container(
-                width: 382,
-                height: 56,
-                // padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: TextFormField(
-                  controller: lastNameController,
-                  style: const TextStyle(color: Colors.white),
-                  cursorColor: Colors.white,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    prefixIcon: const Icon(
-                      Icons.person_outline_rounded,
-                      color: Colors.grey,
-                    ),
-                    labelText: "Surname",
-                    labelStyle: TextStyle(color: Colors.black),
-                    filled: true,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    fillColor: Colors.white,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
+              // Container(
+              //   width: 382,
+              //   height: 56,
+              //   decoration: ShapeDecoration(
+              //     shape: RoundedRectangleBorder(
+              //       side: BorderSide(width: 1),
+              //       borderRadius: BorderRadius.circular(8),
+              //     ),
+              //   ),
+              //   child: TextFormField(
+              //     controller: firstNameController,
+              //     style: const TextStyle(color: Colors.black),
+              //     cursorColor: Colors.black,
+              //     keyboardType: TextInputType.emailAddress,
+              //     decoration: InputDecoration(
+              //       prefixIcon: const Icon(
+              //         Icons.person_outline_rounded,
+              //         color: Colors.grey,
+              //       ),
+              //       labelText: "Name",
+              //       labelStyle: TextStyle(color: Colors.black),
+              //       filled: true,
+              //       focusedBorder: InputBorder.none,
+              //       enabledBorder: InputBorder.none,
+              //       fillColor: Colors.white,
+              //       border: OutlineInputBorder(
+              //         borderRadius: BorderRadius.circular(8),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              const SizedBox(
                 height: 25,
               ),
               Container(
@@ -107,8 +132,8 @@ class _SignUpState extends State<SignUp> {
                 ),
                 child: TextFormField(
                   controller: emailController,
-                  style: const TextStyle(color: Colors.white),
-                  cursorColor: Colors.white,
+                  style: const TextStyle(color: Colors.black),
+                  cursorColor: Colors.black,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.mail_outline_rounded,
@@ -116,6 +141,7 @@ class _SignUpState extends State<SignUp> {
                     labelText: "Email Address",
                     labelStyle: TextStyle(color: Colors.black),
                     filled: true,
+                    enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
@@ -138,8 +164,8 @@ class _SignUpState extends State<SignUp> {
                 ),
                 child: TextFormField(
                   controller: passwordController,
-                  style: const TextStyle(color: Colors.white),
-                  cursorColor: Colors.white,
+                  style: const TextStyle(color: Colors.black),
+                  cursorColor: Colors.black,
                   obscureText: _isVisible,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
@@ -159,6 +185,51 @@ class _SignUpState extends State<SignUp> {
                     labelText: "Password",
                     labelStyle: TextStyle(color: Colors.black),
                     filled: true,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: 382,
+                height: 56,
+                decoration: ShapeDecoration(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(width: 1),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: TextFormField(
+                  controller: confirmPasswordController,
+                  style: const TextStyle(color: Colors.black),
+                  cursorColor: Colors.black,
+                  obscureText: _isVisible,
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock_outline_rounded,
+                        color: Color(0xffb1b1b4)),
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _isVisible = !_isVisible;
+                          });
+                        },
+                        icon: Icon(
+                            _isVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            color: const Color(0xffb1b1b4))),
+                    labelText: "Confirm Password",
+                    labelStyle: TextStyle(color: Colors.black),
+                    filled: true,
+                    enabledBorder: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
@@ -172,13 +243,14 @@ class _SignUpState extends State<SignUp> {
               ),
               Center(
                 child: InkWell(
-                  onTap: () {},
+                  onTap: _handleSignUp, // Call the registration function on tap
                   child: Container(
                     height: 50,
                     width: 150,
                     decoration: const BoxDecoration(
-                        color: Colors.purple,
-                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                      color: Colors.purple,
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
                     child: const Center(
                       child: Text(
                         'Sign Up',
@@ -208,10 +280,10 @@ class _SignUpState extends State<SignUp> {
                     const SizedBox(width: 5),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignIn()));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const SignIn()));
                       },
                       child: const Text(
                         'Login',
