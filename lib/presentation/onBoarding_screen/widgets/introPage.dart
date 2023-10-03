@@ -72,7 +72,7 @@ class IntroPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: lottieHeight,
                 width: lottieWidth,
                 child: Lottie.asset(

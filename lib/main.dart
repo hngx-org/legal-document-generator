@@ -10,7 +10,6 @@ Future<void> main() async {
   await dotenv.load(fileName: "assets/keys.env");
   WidgetsFlutterBinding.ensureInitialized();
 
-
   ///The error widget is a UI render builder that is used for managing error views
   ///in debug mode and release modes.
   ///There are various funny scenarios where errors happen in an app and suddenly there's
@@ -26,7 +25,9 @@ Future<void> main() async {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          kDebugMode ? details.exception.toString() : "Oops, something happened, try again.",
+          kDebugMode
+              ? details.exception.toString()
+              : "Oops, something happened, try again.",
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -45,8 +46,6 @@ Future<void> main() async {
   );
 }
 
-
-
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -64,7 +63,6 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         textTheme: const TextTheme(),
-
       ),
       builder: (context, child) {
         /// This is where we impose our UI restrictions on the app using mediaQuery

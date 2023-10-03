@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 150,
                       width: 150,
                       child: Image.asset(AppGif.noHistory)),
-                  Center(child: const Text('No document created. Tap the plus icon below to create a new document'))
+                  const Center(child: Text('No document created. Tap the plus icon below to create a new document'))
                 ],
               )
               : Column(
