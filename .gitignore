@@ -4,7 +4,6 @@
 *.pyc
 *.swp
 .DS_Store
-.env
 .atom/
 .buildlog/
 .history
@@ -32,6 +31,7 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/assets/keys.env
 
 # Symbolication related
 app.*.symbols
