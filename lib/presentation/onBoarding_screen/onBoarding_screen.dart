@@ -69,7 +69,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 40).r,
+            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 50).r,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -83,20 +83,16 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                       activeDotColor: AppColor.secondaryColor,
                       spacing: 5.r),
                 ),
-                Container(
-                  child: Row(
+                IconButton(
+                  onPressed: (){ _controller.jumpToPage(2);},
+                  icon: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          _controller.jumpToPage(2);
-                        },
-                        child: Text(
-                          'Skip',
-                          style: TextStyle(
-                            color: AppColor.TextColor,
-                            fontWeight: FontWeight.w700,
-                            fontFamily: 'Onest',
-                          ),
+                      Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: AppColor.TextColor,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: 'Onest',
                         ),
                       ),
                       Icon(

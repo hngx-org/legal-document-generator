@@ -17,11 +17,11 @@ class AppColor {
 
   static Color primaryColor = const Color(0XFF4D426D);
   static Color tertiaryColor =
-      Color(0xff3BA58B); //For Appbar, Buttons and Text Selections.
+      const Color(0xff3BA58B); //For Appbar, Buttons and Text Selections.
   static Color backgroundColor = const Color(0XFF5C5082);
-  static Color backgroundColor2 = Color(0xFF463A6F);
+  static Color backgroundColor2 = const Color(0xFF463A6F);
   static Color secondaryColor =
       const Color(0XFFEFA985); // For BorderSide and Related Components.
-  static Color previewTextColor = Color(0xff81759D);
-  static Color TextColor = Color(0xffEBE9F0);
+  static Color previewTextColor = const Color(0xff81759D);
+  static Color TextColor = const Color(0xffEBE9F0);
 }
