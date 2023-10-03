@@ -50,7 +50,7 @@ class _CreateDocumentState extends State<CreateDocument> {
       },
     ];
 
-    final url = 'https://api.openai.com/v1/chat/completions';
+    const url = 'https://api.openai.com/v1/chat/completions';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $apiKey',
@@ -82,7 +82,7 @@ class _CreateDocumentState extends State<CreateDocument> {
 
   void fetchData2() async {
    try{
-     final prompt = 'Generate a legal document for a contract between parties.';
+     const prompt = 'Generate a legal document for a contract between parties.';
      final http.Response response = await openAI.postToCompletions(prompt);
      print(response.statusCode);
 

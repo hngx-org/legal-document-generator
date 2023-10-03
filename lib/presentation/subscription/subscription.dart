@@ -51,7 +51,7 @@ class _SubscriptionState extends State<Subscription> {
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
@@ -122,7 +122,7 @@ class _SubscriptionState extends State<Subscription> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
@@ -193,7 +193,7 @@ class _SubscriptionState extends State<Subscription> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   )
                 ]),
