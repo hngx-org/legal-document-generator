@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:legal_document_generator/presentation/auth/screens/register.dart';
+import 'package:legal_document_generator/presentation/auth/screens/sign_in.dart';
 import 'package:legal_document_generator/presentation/create_document/create_document_screen.dart';
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/onBoarding_screen/onBoarding_screen.dart';
@@ -53,6 +55,10 @@ class AppRouter {
         return _getPageRoute(const CreateDocument());
       case OnBoardingScreen.routeName:
         return _getPageRoute(const OnBoardingScreen());
+      case SignIn.routeName:
+        return _getPageRoute(const SignIn());
+      case RegistrationForm.routeName:
+        return _getPageRoute(const RegistrationForm());
 
       default:
         return _getPageRoute(const SplashScreen());

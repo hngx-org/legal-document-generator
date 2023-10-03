@@ -23,22 +23,7 @@ class _CreateDocumentState extends State<CreateDocument> {
   final String apiKey = dotenv.env['open_ai_key']!;
   late final Api api;
   late final openAI;
-
-  void fetchData() async {
-   try{
-     String prompt = 'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and keep the chat res';
-     final apiResponse = await api.postToCompletions(prompt);
-     late String responseText;
-     responseText = apiResponse.data['text'];
-     print(responseText);
-   }catch(e){
-
-   }
-
-    setState(() {
-
-    });
-  }
+  bool isLoading = false;
   String responseText = '';
 
   Future<void> postToCompletions() async {
@@ -50,7 +35,8 @@ class _CreateDocumentState extends State<CreateDocument> {
       },
     ];
 
-    const url = 'https://api.openai.com/v1/chat/completions';
+    // const url = 'https://api.openai.com/v1/chat/completions';
+    const url = 'https://spitfire-interractions.onrender.com/api/chat/completions';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $apiKey',
@@ -61,11 +47,20 @@ class _CreateDocumentState extends State<CreateDocument> {
       'model': 'gpt-3.5-turbo',
       'max_tokens': 1024, // Customize this as needed
     };
+    final body2 = {
+        "history": [
+          "user: Hello!",
+          "AI: Hi! How can I help you today?",
+          "user: I'm looking for information on the latest trends in artificial intelligence.",
+          "AI: Sure, here are some of the latest trends in artificial intelligence"
+        ],
+        "user_input": "what is today's date"
+      };
 
     final response = await http.post(
       Uri.parse(url),
       headers: headers,
-      body: json.encode(body),
+      body: json.encode(body2),
     );
 
     if (response.statusCode == 200) {
@@ -144,8 +139,15 @@ class _CreateDocumentState extends State<CreateDocument> {
                 child: Align(
                     alignment: Alignment.bottomCenter,
                     child: CustomButton(
-                      onPressed: (){
-                        postToCompletions();
+                      loading: isLoading,
+                      onPressed: ()async{
+                        setState(() {
+                          isLoading = true;
+                        });
+                        await postToCompletions();
+                        setState(() {
+                          isLoading = false;
+                        });
                       },
                       buttonText: 'Create Document',
                       backgroundColor: AppColor.secondaryColor,
