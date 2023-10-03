@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/router/app_router.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import 'package:legal_document_generator/presentation/splash_screen/splash_screen.dart';
@@ -10,7 +9,6 @@ Future<void> main() async {
   //This is the main entry point of the app. This is where services are initialized
   await dotenv.load(fileName: "assets/keys.env");
   WidgetsFlutterBinding.ensureInitialized();
-
 
   ///The error widget is a UI render builder that is used for managing error views
   ///in debug mode and release modes.
@@ -27,7 +25,9 @@ Future<void> main() async {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          kDebugMode ? details.exception.toString() : "Oops, something happened, try again.",
+          kDebugMode
+              ? details.exception.toString()
+              : "Oops, something happened, try again.",
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -46,8 +46,6 @@ Future<void> main() async {
   );
 }
 
-
-
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -65,7 +63,6 @@ class MainApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         textTheme: const TextTheme(),
-
       ),
       builder: (context, child) {
         /// This is where we impose our UI restrictions on the app using mediaQuery

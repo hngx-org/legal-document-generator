@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:legal_document_generator/components/constants/app_colors.dart';
-import 'package:legal_document_generator/components/constants/gif.dart';
+import 'package:legal_document_generator/components/constants/animations.dart';
 import 'package:legal_document_generator/components/constants/icons.dart';
 import 'package:legal_document_generator/components/constants/text_styles.dart';
 import 'package:legal_document_generator/presentation/home_screen/widgets/document_card.dart';
 import 'package:legal_document_generator/presentation/home_screen/widgets/premium_card.dart';
+import 'package:lottie/lottie.dart';
 
 import '../create_document/create_document_screen.dart';
 import '../router/base_navigator.dart';
@@ -46,6 +48,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Icon(
             Icons.add,
             color: AppColor.primaryColor,
+=======
+            color: AppColor.white,
           ),
         ),
         body: Padding(
@@ -56,12 +60,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     SizedBox(
+
                         height: 150,
                         width: 150,
                         child: Image.asset(AppGif.noHistory)),
                     Center(
                         child: const Text(
                             'No document created. Tap the plus icon below to create a new document'))
+=======
+                        height: 150.h,
+                        width: 150.w,
+                        child: Lottie.asset(AppAnimations.noHistory)),
+                    Center(
+                        child: Text(
+                      'No document created. Tap the plus icon below to create a new document',
+                      style: CustomTextStyles.normalWhiteText,
+                    ))
+
                   ],
                 )
               : Column(
@@ -72,12 +87,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Align(
                         alignment: Alignment.centerLeft,
+
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Text(
                             'Pick Document Type',
                             style: CustomTextStyles.headerTextStyle,
                           ),
+=======
+                        child: Text(
+                          'Pick Document Type',
+                          style: CustomTextStyles.headerTextStyle,
+
                         )),
                     const SizedBox(
                       height: 10,

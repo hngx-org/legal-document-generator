@@ -29,7 +29,7 @@ class OpenAI {
   OpenAI(this.apiKey);
 
   Future<String> postToCompletions(String prompt) async {
-    final url = 'https://api.openai.com/v1/completions';
+    const url = 'https://api.openai.com/v1/completions';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $apiKey',

@@ -26,6 +26,7 @@ class _CreateDocumentState extends State<CreateDocument> {
   late final Api api;
   late final openAI;
 
+
   void fetchData() async {
     try {
       String prompt =
@@ -39,6 +40,9 @@ class _CreateDocumentState extends State<CreateDocument> {
     setState(() {});
   }
 
+=======
+  bool isLoading = false;
+
   String responseText = '';
 
   Future<void> postToCompletions() async {
@@ -51,7 +55,8 @@ class _CreateDocumentState extends State<CreateDocument> {
       },
     ];
 
-    final url = 'https://api.openai.com/v1/chat/completions';
+    // const url = 'https://api.openai.com/v1/chat/completions';
+    const url = 'https://spitfire-interractions.onrender.com/api/chat/completions';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $apiKey',
@@ -62,11 +67,20 @@ class _CreateDocumentState extends State<CreateDocument> {
       'model': 'gpt-3.5-turbo',
       'max_tokens': 1024, // Customize this as needed
     };
+    final body2 = {
+        "history": [
+          "user: Hello!",
+          "AI: Hi! How can I help you today?",
+          "user: I'm looking for information on the latest trends in artificial intelligence.",
+          "AI: Sure, here are some of the latest trends in artificial intelligence"
+        ],
+        "user_input": "what is today's date"
+      };
 
     final response = await http.post(
       Uri.parse(url),
       headers: headers,
-      body: json.encode(body),
+      body: json.encode(body2),
     );
 
     if (response.statusCode == 200) {
@@ -81,11 +95,26 @@ class _CreateDocumentState extends State<CreateDocument> {
   }
 
   void fetchData2() async {
+
     try {
       final prompt =
           'Generate a legal document for a contract between parties.';
       final http.Response response = await openAI.postToCompletions(prompt);
       print(response.statusCode);
+=======
+   try{
+     const prompt = 'Generate a legal document for a contract between parties.';
+     final http.Response response = await openAI.postToCompletions(prompt);
+     print(response.statusCode);
+
+     setState(() {
+       responseText = response.body;
+     });
+   }catch(e){
+     print('failed');
+   }
+  }
+
 
       setState(() {
         responseText = response.body;
@@ -139,6 +168,7 @@ class _CreateDocumentState extends State<CreateDocument> {
           child: Column(
             children: [
               CustomTextField(
+
                 label: 'Legal Document Type',
                 controller: documentTypeController,
                 hintText: 'Example: Employment Contract',
@@ -182,6 +212,36 @@ class _CreateDocumentState extends State<CreateDocument> {
               //         backgroundColor: AppColor.secondaryColor,
               //       )),
               // )
+=======
+               label: 'Legal Document Type',
+               controller: documentTypeController,
+               hintText: 'Example: Employment Contract',
+                onChanged: (value){},
+             ),
+            CustomTextField(
+              controller: keyPointsController,
+              label: 'Key Points',
+              hintText: 'Example: Employer name is ABC & Employee name is JOHN DOE',
+              onChanged: (value ) {  },
+            ),
+               Expanded(
+                child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: CustomButton(
+                      loading: isLoading,
+                      onPressed: ()async{
+                        setState(() {
+                          isLoading = true;
+                        });
+                        await postToCompletions();
+                        setState(() {
+                          isLoading = false;
+                        });
+                      },
+                      buttonText: 'Create Document',
+                      backgroundColor: AppColor.secondaryColor,
+                    )),
+              )
             ],
           ),
         ));

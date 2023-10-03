@@ -15,7 +15,7 @@ class CustomTextField extends StatelessWidget {
         this.iconAction,
         this.prefixIcon,
         this.inputType = TextInputType.text,
-        required this.onChanged,
+        this.onChanged,
         this.validateMode = AutovalidateMode.disabled,
         this.obscureText = false,
         this.padding = 10,
@@ -26,7 +26,7 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final String hintText;
   final TextInputType inputType;
-  final Function(String) onChanged;
+  final Function(String)? onChanged;
   final bool readOnly;
   final VoidCallback? iconAction;
   final validator;
@@ -52,6 +52,10 @@ class CustomTextField extends StatelessWidget {
                 fontFamily: 'Onest',
                 fontSize: 16.sp,),
             ),
+=======
+          Text(
+            label,
+            style: CustomTextStyles.normalWhiteText,
           ),
           const SizedBox(height: 5),
           Container(
@@ -67,8 +71,11 @@ class CustomTextField extends StatelessWidget {
                       offset: const Offset(1, 2))
                 ]),
             child: TextFormField(
+
               
               maxLines: 10,
+=======
+              maxLines: obscureText ? 1 : 10,
               minLines: 1,
               obscuringCharacter: '*',
               autovalidateMode: validateMode,

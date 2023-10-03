@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:legal_document_generator/components/constants/widgets/reusableButton.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:legal_document_generator/presentation/auth/screens/register.dart';
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/pdf_screen/nav_to_pdf_screen.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../components/constants/app_colors.dart';
+import '../../auth/screens/sign_in.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({
@@ -72,7 +74,7 @@ class IntroPage extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: lottieHeight,
                 width: lottieWidth,
                 child: Lottie.asset(
@@ -87,7 +89,11 @@ class IntroPage extends StatelessWidget {
                   fontSize: 16.sp,
                 onClicked: () {
                   onLastPage
+
                       ? BaseNavigator.pushNamed(HomeScreen.routeName)
+=======
+                      ?  BaseNavigator.pushNamed(RegistrationForm.routeName)
+
                       : controller.nextPage(
                           duration: const Duration(milliseconds: 500),
                           curve: Curves.easeIn);
