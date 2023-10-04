@@ -18,31 +18,35 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+    final TextEditingController nameController = TextEditingController();
 
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
       ),
-      routes: {
-        '/': (context) => SignIn(
-              emailController: emailController,
-              successRoutePage: '/home',
-              passwordController: passwordController, // Use the route name here
-            ),
-        '/signup': (context) => const SignUp(), // Define a route for Home
-      },
-      initialRoute: '/',
+      home: Subscription(),
     );
   }
 }
 
-      //Subscription(),
-
-// RegistrationForm(
+//  routes: {
+//         '/': (context) => RegistrationForm(
 //               emailController: emailController,
 //               successRoutePage: '/home',
 //               nameController: nameController,
 //               passwordController: passwordController, // Use the route name here
 //             ),
 //         '/signup': (context) => const SignUp(),
+//       },
+//       initialRoute: '/',
+
+      
+
+      // SignIn(
+      //         emailController: emailController,
+      //         successRoutePage: '/home',
+      //         passwordController: passwordController, // Use the route name here
+      //       ),
+      //   '/signup': (context) => const SignUp(),
+

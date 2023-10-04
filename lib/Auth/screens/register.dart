@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hng_authentication/authentication.dart';
@@ -157,7 +158,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
                         showSnackbar(
                             context, Colors.black, 'SignUp successful');
-                        print('sign up Email >>> ${data.email}');
+                        if (kDebugMode) {
+                          print('sign up Email >>> ${data.email}');
+                        }
                         print('sign up id >>> ${data.id}');
                         print('sign up created at >>> ${data.createdAt}');
                         Navigator.of(context)
