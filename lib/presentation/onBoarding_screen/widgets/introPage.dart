@@ -53,7 +53,7 @@ class IntroPage extends StatelessWidget {
                       firstText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: AppColor.TextColor,
+                          color: AppColor.textColor,
                           fontFamily: 'Onest',
                           fontWeight: FontWeight.w700,
                           fontSize: 28.sp),
@@ -66,7 +66,7 @@ class IntroPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       secondText,
                       style: TextStyle(
-                          color: AppColor.TextColor,
+                          color: AppColor.textColor,
                           fontFamily: 'Onest',
                           fontWeight: FontWeight.w500,
                           fontSize: 16.sp),
