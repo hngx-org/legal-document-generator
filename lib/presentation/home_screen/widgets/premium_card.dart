@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:legal_document_generator/components/constants/app_colors.dart';
 import 'package:legal_document_generator/components/constants/icons.dart';
+import 'package:legal_document_generator/presentation/router/base_navigator.dart';
+import 'package:legal_document_generator/presentation/subscription/subscription.dart';
 
 class PremiumCard extends StatelessWidget {
   const PremiumCard({
@@ -28,6 +30,9 @@ class PremiumCard extends StatelessWidget {
             fontSize: 16,
           ),
         ),
+        onTap: (){
+          BaseNavigator.pushNamed(Subscription_screen.routeName);
+        },
       ),
     );
   }

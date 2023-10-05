@@ -5,6 +5,7 @@ import 'package:legal_document_generator/presentation/create_document/create_doc
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/onBoarding_screen/onBoarding_screen.dart';
 import 'package:legal_document_generator/presentation/pdf_screen/nav_to_pdf_screen.dart';
+import 'package:legal_document_generator/presentation/subscription/subscription.dart';
 
 import '../splash_screen/splash_screen.dart';
 
@@ -61,6 +62,8 @@ class AppRouter {
         return _getPageRoute(const SignIn());
       case RegistrationForm.routeName:
         return _getPageRoute(const RegistrationForm());
+      case Subscription_screen.routeName:
+        return _getPageRoute(const Subscription_screen());
 
       default:
         return _getPageRoute(const SplashScreen());

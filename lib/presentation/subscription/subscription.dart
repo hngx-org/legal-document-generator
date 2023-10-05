@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:legal_document_generator/components/constants/app_colors.dart';
-import 'package:legal_document_generator/components/constants/widgets/custom_button.dart';
-import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import 'package:in_app_payment/in_app_payment.dart';
+
+import '../../data/user_data.dart';
 
 class Subscription_screen extends StatefulWidget {
   const Subscription_screen({super.key});
@@ -118,9 +118,7 @@ class _Subscription_screenState extends State<Subscription_screen> {
             ),
             SizedBox(height: 30.h),
 
-            pay.googlePay(
-                amountToPay: selectedAmount.toString(),
-                userID: ''), //for android im,
+            pay.googlePay(context, userID: UserData.userData['cookie'], amountToPay: selectedAmount.toString(), ), //for android im,
           ]),
         ),
       ),
