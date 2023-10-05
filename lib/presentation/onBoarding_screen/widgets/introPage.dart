@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:legal_document_generator/components/constants/widgets/reusableButton.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:legal_document_generator/presentation/auth/screens/register.dart';
 import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
+import 'package:legal_document_generator/presentation/pdf_screen/nav_to_pdf_screen.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../components/constants/app_colors.dart';
-
+import '../../auth/screens/sign_in.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({
@@ -42,35 +44,35 @@ class IntroPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                height: 40.h,
+                height: 1.h,
               ),
-              SizedBox(
-                child: Column(
-                  children: [
-                    Text(
+              Column(
+                children: [
+                  SizedBox(width: 320.w,
+                    child: Text(
                       firstText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: AppColor.TextColor,
                           fontFamily: 'Onest',
                           fontWeight: FontWeight.w700,
-                          fontSize: 20.sp),
+                          fontSize: 28.sp),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, right: 15, top: 25).r,
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        secondText,
-                        style: TextStyle(
-                            color: AppColor.TextColor,
-                            fontFamily: 'Onest',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13.sp),
-                      ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 17, right: 17, top: 25,).r,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      secondText,
+                      style: TextStyle(
+                          color: AppColor.TextColor,
+                          fontFamily: 'Onest',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: lottieHeight,
@@ -79,18 +81,18 @@ class IntroPage extends StatelessWidget {
                   animation,
                 ),
               ),
-              SizedBox(height: 15.h),
+              SizedBox(height: 30.h),
               ReusableButton(
                 text: onLastPage ? 'Get Started' : 'Continue',
                 height: 50.h,
-                width: 200.w,
-                fontSize: 16.sp,
-                function: () {
+                  width: 180.w,
+                  fontSize: 16.sp,
+                onClicked: () {
                   onLastPage
-                      ?  BaseNavigator.pushNamed(HomeScreen.routeName)
+                      ?  BaseNavigator.pushNamed(RegistrationForm.routeName)
                       : controller.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeIn);
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.easeIn);
                 },
               ),
             ],

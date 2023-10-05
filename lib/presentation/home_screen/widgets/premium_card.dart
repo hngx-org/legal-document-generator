@@ -11,7 +11,7 @@ class PremiumCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 5,
-      shadowColor: Colors.grey,
+      shadowColor: AppColor.backgroundColor2,
       color: AppColor.peach2,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -19,7 +19,15 @@ class PremiumCard extends StatelessWidget {
       child: ListTile(
         leading: SizedBox(
             height: 40, width: 40, child: Image.asset(AppIcons.premiumIcon)),
-        title: const Text('Buy Premium'),
+        title: const Text(
+          'Buy Premium',
+          style: TextStyle(
+            // color: AppColor.TextColor,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Onest',
+            fontSize: 16,
+          ),
+        ),
       ),
     );
   }
