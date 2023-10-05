@@ -52,7 +52,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Events App',
+      title: 'Legal Document Generator',
       debugShowCheckedModeBanner: false,
 
       /// This is where we get access to the navigation key to be used for several thingsin our app
