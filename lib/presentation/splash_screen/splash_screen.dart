@@ -95,21 +95,21 @@ class _SplashScreenState extends State<SplashScreen>
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
+                padding: const EdgeInsets.only(bottom: 14).r,
                 child: Text(
                   'Version:- 1.0.0',
                   style: TextStyle(
                     color: textColorAnimation.value,
                     fontFamily: 'Onest',
                     fontWeight: FontWeight.w800,
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               )
             ],
           );
         },
-        // designSize: const Size(428, 926),
+        designSize: const Size(428, 926),
       )
     );
   }

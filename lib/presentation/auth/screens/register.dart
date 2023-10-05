@@ -51,24 +51,39 @@ class _RegistrationFormState extends State<RegistrationForm> {
             right: screenWidth * 0.04,
             top: 20,
             bottom: 0,
-          ),
+          ).r,
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
-                Text(
-                  "Create Account",
-                  style: CustomTextStyles.headerTextStyle2,
+                Center(
+                  child: Text(
+                    "LegalDocGen",
+                    style:TextStyle(
+                          color: AppColor.secondaryColor,
+                          fontFamily: 'Onest',
+                          fontWeight: FontWeight.w800,
+                          fontSize: 36.sp,
+                        ),
+                  ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 30,
+                ), Padding(
+                  padding: const EdgeInsets.only(left: 6.0),
+                  child: Text(
+                    "Create your Account",
+                    style: CustomTextStyles.headerTextStyle,
+                  ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
+                
+              
                 CustomTextField(
                   hintText: "john_doe",
                   controller: nameController,
@@ -175,7 +190,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     }
 
                   },
-                  buttonText: 'Create Account',
+                  buttonText: 'Sign Up',
                 ),
                 IconButton(
                   onPressed: (){

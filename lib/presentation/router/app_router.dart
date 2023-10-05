@@ -55,8 +55,8 @@ class AppRouter {
         return _getPageRoute(const CreateDocument());
       case OnBoardingScreen.routeName:
         return _getPageRoute(const OnBoardingScreen());
-      case NavToPdf.routeName:
-        return _getPageRoute(const NavToPdf());
+      // case NavToPdf.routeName:
+        // return _getPageRoute(const NavToPdf());
       case SignIn.routeName:
         return _getPageRoute(const SignIn());
       case RegistrationForm.routeName:

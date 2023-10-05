@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:legal_document_generator/components/constants/widgets/custom_button.dart';
 import 'package:legal_document_generator/components/constants/widgets/custom_textfield.dart';
 import 'package:legal_document_generator/components/constants/widgets/reusableButton.dart';
+import 'package:legal_document_generator/presentation/create_document/widgets/AI_response_container.dart';
 import 'package:legal_document_generator/presentation/pdf_screen/pdf_Screen.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
 import '../../components/constants/app_colors.dart';
@@ -40,7 +41,8 @@ class _CreateDocumentState extends State<CreateDocument> {
     ];
 
     // const url = 'https://api.openai.com/v1/chat/completions';
-    const url = 'https://spitfire-interractions.onrender.com/api/chat/completions';
+    const url =
+        'https://spitfire-interractions.onrender.com/api/chat/completions';
     final headers = {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer $apiKey',
@@ -52,14 +54,14 @@ class _CreateDocumentState extends State<CreateDocument> {
       'max_tokens': 1024, // Customize this as needed
     };
     final body2 = {
-        "history": [
-          "user: Hello!",
-          "AI: Hi! How can I help you today?",
-          "user: I'm looking for information on the latest trends in artificial intelligence.",
-          "AI: Sure, here are some of the latest trends in artificial intelligence"
-        ],
-        "user_input": "what is today's date"
-      };
+      "history": [
+        "user: Hello!",
+        "AI: Hi! How can I help you today?",
+        "user: I'm looking for information on the latest trends in artificial intelligence.",
+        "AI: Sure, here are some of the latest trends in artificial intelligence"
+      ],
+      "user_input": "what is today's date"
+    };
 
     final response = await http.post(
       Uri.parse(url),
@@ -93,32 +95,35 @@ class _CreateDocumentState extends State<CreateDocument> {
     openAI = OpenAI(apiKey);
   }
 
+  bool isVisible = false;
+  bool isGenerated = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColor.backgroundColor,
-        appBar: AppBar(
-          backgroundColor: AppColor.secondaryColor,
-          leading: IconButton(
-              onPressed: () {
-                BaseNavigator.pop();
-              },
-              icon: Icon(
-                Icons.arrow_back_outlined,
-                color: Color(0XFF4D426D),
-              )),
-          title: const Text(
-            'Create New Document',
-            style: TextStyle(
+      backgroundColor: AppColor.backgroundColor,
+      appBar: AppBar(
+        backgroundColor: AppColor.secondaryColor,
+        leading: IconButton(
+            onPressed: () {
+              BaseNavigator.pop();
+            },
+            icon: Icon(
+              Icons.arrow_back_outlined,
               color: Color(0XFF4D426D),
-              fontWeight: FontWeight.w700,
-              fontFamily: 'Onest',
-              fontSize: 22,
-            ),
+            )),
+        title: const Text(
+          'Create New Document',
+          style: TextStyle(
+            color: Color(0XFF4D426D),
+            fontWeight: FontWeight.w700,
+            fontFamily: 'Onest',
+            fontSize: 22,
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               CustomTextField(
@@ -134,42 +139,83 @@ class _CreateDocumentState extends State<CreateDocument> {
                     'Example: Employer name is ABC & Employee name is JOHN DOE',
                 onChanged: (value) {},
               ),
-
-              // ReusableButton(
-              //     // text: 'Convert to Pdf',
-              //     text: 'Generate Doc',
-              //     height: 30.h,
-              //     width: 160.w,
-              //     fontSize: 16.sp,
-              //     onClicked: () async {
-              //       final pdfFile =
-              //           await Pdf_Api.generateCenteredText('Legal Document');
-              //
-              //       Pdf_Api.openFile(pdfFile);
-              //       Future.delayed(const Duration(milliseconds: 1000), () {
-              //         Navigator.pop(context);
-              //       });
-              //     }),
-
-              Expanded(
-                child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: CustomButton(
-                        onPressed: () async {
-                          final pdfFile =
-                          await Pdf_Api.generateCenteredText('Legal Document');
-
-                          Pdf_Api.openFile(pdfFile);
-                          Future.delayed(const Duration(milliseconds: 1000), () {
-                            Navigator.pop(context);
-                          });
-                        },
-                      buttonText: 'Create Document',
-                      backgroundColor: AppColor.secondaryColor,
-                    )),
+              SizedBox(
+                height: 20.h,
+              ),
+              isVisible == false
+                  ? Container(
+                      height: 480.h,
+                    )
+                  : Visibility(
+                      visible: isVisible,
+                      child: Container(
+                        // color: Colors.black,
+                        height: 480.h,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              OpenAiContainer(input: 'You Are Welcome'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+              ReusableButton(
+                text: isGenerated == false ? 'Generate Doc' : 'Convert to Pdf',
+                height: 50.h,
+                width: 200.w,
+                fontSize: 16.sp,
+                onClicked: isGenerated == false
+                    ? () {
+                        setState(() {
+                          isVisible = !isVisible;
+                          isGenerated = !isGenerated;
+                        });
+                      }
+                    : () async {
+                        setState(() {
+                          isVisible = !isVisible;
+                          isGenerated = !isGenerated;
+                        });
+                        final pdfFile =
+                            await Pdf_Api.generateCenteredText('Legal Document');
+        
+                        Pdf_Api.openFile(pdfFile);
+                        // Future.delayed(
+                        //   const Duration(milliseconds: 1000),
+                        //   () {
+                        //     Navigator.pop(context);
+                        //   },
+                        // );
+                      },
               ),
             ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
+
+
+  // SizedBox(
+                          //   height: 480.h,
+                          // ),
+                  
+                          // Expanded(
+                          //   child: Align(
+                          //       alignment: Alignment.bottomCenter,
+                          //       child: CustomButton(
+                          //           onPressed: () async {
+                          //             final pdfFile =
+                          //             await Pdf_Api.generateCenteredText('Legal Document');
+                  
+                          //             Pdf_Api.openFile(pdfFile);
+                          //             Future.delayed(const Duration(milliseconds: 1000), () {
+                          //               Navigator.pop(context);
+                          //             });
+                          //           },
+                          //         buttonText: 'Create Document',
+                          //         backgroundColor: AppColor.secondaryColor,
+                          //       )),
+                          // ),
