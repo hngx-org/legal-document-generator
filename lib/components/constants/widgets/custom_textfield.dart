@@ -39,7 +39,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10).r,
+      padding: const EdgeInsets.symmetric(vertical: 6).r,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -54,9 +54,10 @@ class CustomTextField extends StatelessWidget {
             )),
           const SizedBox(height: 5),
           Container(
+            // height: 50.h,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15.r),
-                color: AppColor.peach2,
+                color: AppColor.backgroundColor3,
                 border: Border.all(
                     color: AppColor.black.withOpacity(0.7)),
                 boxShadow: [
@@ -77,8 +78,10 @@ class CustomTextField extends StatelessWidget {
               obscureText: obscureText,
               style: const TextStyle(
                 letterSpacing: 2,
-                color: Color(0XFF4D426D),
-                fontWeight: FontWeight.bold,
+                color: const Color(0XFFEFA985),
+                fontWeight: FontWeight.w500,
+            fontFamily: 'Onest',
+            fontSize: 16,
               ),
               decoration: InputDecoration(
                   prefixIcon: prefixIcon != null ? Icon(

@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hng_authentication/authentication.dart';
 import 'package:hng_authentication/widgets/widget.dart';
 import 'package:legal_document_generator/components/constants/text_styles.dart';
@@ -57,16 +58,31 @@ class _SignInState extends State<SignIn> {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "Sign In",
-                  style: CustomTextStyles.headerTextStyle,
+                Center(
+                  child: Text(
+                    "LegalDocGen",
+                    style:TextStyle(
+                          color: AppColor.secondaryColor,
+                          fontFamily: 'Onest',
+                          fontWeight: FontWeight.w800,
+                          fontSize: 36.sp,
+                        ),
+                  ),
+                ),  const SizedBox(
+                  height: 30,
+                ),
+              
+                Padding(
+                  padding: const EdgeInsets.only(left: 6.0),
+                  child: Text(
+                    "Login to your Account",
+                    style: CustomTextStyles.headerTextStyle,
+                  ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+                
                 CustomTextField(
                   hintText: "someone@example.com",
                   controller: emailController,
@@ -90,11 +106,9 @@ class _SignInState extends State<SignIn> {
                   label: 'Password',
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
+               
                 CustomButton(
                   loading: isLoading,
                   onPressed: () async {
