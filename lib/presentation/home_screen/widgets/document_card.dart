@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:legal_document_generator/components/constants/app_colors.dart';
+import 'package:legal_document_generator/presentation/create_document/create_document_screen.dart';
 
 class DocumentCard extends StatelessWidget {
   final Color color;
@@ -37,10 +38,18 @@ class DocumentCard extends StatelessWidget {
         title: Text(
           title,
           style: TextStyle(
-            color: AppColor.TextColor,
+            color: AppColor.textColor,
               fontFamily: 'Onest', fontWeight: FontWeight.w500, fontSize: 16),
         ),
+        onTap: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> CreateDocument(documentType: getDocumentType(),)));
+        },
       ),
     );
+  }
+
+  String getDocumentType(){
+    List words = title.split(' ');
+    return words.sublist(2,words.length).join(' ');
   }
 }

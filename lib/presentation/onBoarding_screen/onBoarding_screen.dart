@@ -79,7 +79,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                   effect: ExpandingDotsEffect(
                       dotHeight: 5.h,
                       dotWidth: 8.w,
-                      dotColor: AppColor.TextColor,
+                      dotColor: AppColor.textColor,
                       activeDotColor: AppColor.secondaryColor,
                       spacing: 5.r),
                 ),
@@ -90,14 +90,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
                       Text(
                         'Skip',
                         style: TextStyle(
-                          color: AppColor.TextColor,
+                          color: AppColor.textColor,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'Onest',
                         ),
                       ),
                       Icon(
                         Icons.chevron_right_rounded,
-                        color: AppColor.TextColor,
+                        color: AppColor.textColor,
                       )
                     ],
                   ),
