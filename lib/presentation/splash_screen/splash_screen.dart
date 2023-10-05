@@ -1,9 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:legal_document_generator/components/constants/app_colors.dart';
+import 'package:legal_document_generator/data/user_data.dart';
+import 'package:legal_document_generator/presentation/auth/screens/sign_in.dart';
+import 'package:legal_document_generator/presentation/home_screen/home_screen.dart';
 import 'package:legal_document_generator/presentation/onBoarding_screen/onBoarding_screen.dart';
 import 'package:legal_document_generator/presentation/router/base_navigator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -20,9 +26,16 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation colorAnimation;
   late Animation textColorAnimation;
   late Animation sizeAnimation;
+  late bool userLoggedIn = false;
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  Future<void>loadPrefs()async{
+
+
+  }
   @override
   void initState() {
     super.initState();
+    loadPrefs();
     controller = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
@@ -42,8 +55,18 @@ class _SplashScreenState extends State<SplashScreen>
       setState(() {});
       if (controller.isCompleted) {
         // Use Future.delayed to delay navigation until after the animation.
-        Future.delayed(const Duration(milliseconds: 1000), () {
-         BaseNavigator.pushNamed(OnBoardingScreen.routeName);
+        Future.delayed(const Duration(milliseconds: 1000), () async{
+          final SharedPreferences prefs = await _prefs;
+          if(prefs.containsKey('loggedIn')){
+            String encodedUserData = prefs.getString('userData')!;
+            UserData.userData = json.decode(encodedUserData);
+            BaseNavigator.pushNamed(HomeScreen.routeName);
+          }else if(prefs.containsKey('userData')){
+            BaseNavigator.pushNamed(SignIn.routeName);
+          }else{
+            BaseNavigator.pushNamed(OnBoardingScreen.routeName);
+          }
+
         });
       }
     });
