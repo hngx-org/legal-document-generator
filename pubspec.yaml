@@ -44,6 +44,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   hng_authentication: ^0.1.2
   google_fonts: ^6.1.0
+  in_app_payment: ^0.0.2
   shared_preferences: ^2.2.1
   hngx_openai:
     git:
