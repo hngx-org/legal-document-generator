@@ -41,6 +41,7 @@ dependencies:
   hng_authentication: ^0.1.2
   path_provider: ^2.1.1
   google_fonts: ^6.1.0
+  in_app_payment: ^0.0.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0
