@@ -44,35 +44,35 @@ class IntroPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SizedBox(
-                height: 40.h,
+                height: 1.h,
               ),
-              SizedBox(
-                child: Column(
-                  children: [
-                    Text(
+              Column(
+                children: [
+                  SizedBox(width: 320.w,
+                    child: Text(
                       firstText,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: AppColor.TextColor,
+                          color: AppColor.textColor,
                           fontFamily: 'Onest',
                           fontWeight: FontWeight.w700,
-                          fontSize: 24.sp),
+                          fontSize: 28.sp),
                     ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15, right: 15, top: 25).r,
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        secondText,
-                        style: TextStyle(
-                            color: AppColor.TextColor,
-                            fontFamily: 'Onest',
-                            fontWeight: FontWeight.w500,
-                            fontSize: 13.sp),
-                      ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 17, right: 17, top: 25,).r,
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      secondText,
+                      style: TextStyle(
+                          color: AppColor.textColor,
+                          fontFamily: 'Onest',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.sp),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: lottieHeight,
@@ -81,10 +81,10 @@ class IntroPage extends StatelessWidget {
                   animation,
                 ),
               ),
-              SizedBox(height: 15.h),
+              SizedBox(height: 30.h),
               ReusableButton(
                 text: onLastPage ? 'Get Started' : 'Continue',
-                height: 40.h,
+                height: 50.h,
                   width: 180.w,
                   fontSize: 16.sp,
                 onClicked: () {

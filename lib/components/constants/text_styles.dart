@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_colors.dart';
 
 class CustomTextStyles {
   static TextStyle headerTextStyle = TextStyle(
-    color: AppColor.TextColor,
-    fontWeight: FontWeight.w700,
-    fontSize: 20,
+    color: AppColor.textColor,
+    fontWeight: FontWeight.w300,
+    fontSize: 20.sp,
     fontFamily: 'Onest',
   );
   static TextStyle buttonTextStyle = TextStyle(
-    color: AppColor.white,
-    fontWeight: FontWeight.w900,
-    fontSize: 16,
+    color: AppColor.primaryColor,
+    fontWeight: FontWeight.w500,
     fontFamily: 'Onest',
+    // fontSize: 16.sp,
   );
+
   static TextStyle hintStyle = TextStyle(
-      color: AppColor.black.withOpacity(0.2),
+      color: AppColor.previewTextColor,
       fontFamily: 'Onest',
-      fontSize: 14,
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w400,
       letterSpacing: 0);
-  static TextStyle headerTextStyle2 = GoogleFonts.lato(
-    textStyle: TextStyle(
-        letterSpacing: .5,
-        color: AppColor.white,
-        fontWeight: FontWeight.w900,
-        fontSize: 16),
-  );
+  static TextStyle headerTextStyle2 = TextStyle(
+      letterSpacing: .5,
+      color: AppColor.white,
+      fontWeight: FontWeight.w700,
+      fontFamily: 'Onest',
+      fontSize: 28.sp);
 }
