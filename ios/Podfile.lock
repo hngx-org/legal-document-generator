@@ -5,6 +5,8 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - pay_ios (0.0.1):
+    - Flutter
   - permission_handler_apple (9.1.1):
     - Flutter
   - shared_preferences_foundation (0.0.1):
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - open_file (from `.symlinks/plugins/open_file/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - pay_ios (from `.symlinks/plugins/pay_ios/ios`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
@@ -25,6 +28,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/open_file/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  pay_ios:
+    :path: ".symlinks/plugins/pay_ios/ios"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
   shared_preferences_foundation:
@@ -34,6 +39,7 @@ SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   open_file: 02eb5cb6b21264bd3a696876f5afbfb7ca4f4b7d
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
+  pay_ios: 8c7beb9c61d885f3f51b61f75f8793023fc8843a
   permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
 

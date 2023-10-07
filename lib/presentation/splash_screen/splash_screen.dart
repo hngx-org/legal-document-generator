@@ -108,7 +108,7 @@ class _SplashScreenState extends State<SplashScreen>
                         Icons.edit_document,
                         color: textColorAnimation.value,
                         size: 33.r,
-                      )
+                      ),
                     ],
                   ),
                   SpinKitSpinningLines(

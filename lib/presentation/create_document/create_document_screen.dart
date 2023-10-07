@@ -38,7 +38,8 @@ class _CreateDocumentState extends State<CreateDocument> {
   @override
   void initState() {
     super.initState();
-   documentTypeController = TextEditingController(text: widget.documentType ?? '');
+    documentTypeController =
+        TextEditingController(text: widget.documentType ?? '');
   }
 
   bool isVisible = false;
@@ -89,38 +90,52 @@ class _CreateDocumentState extends State<CreateDocument> {
             ),
             Expanded(
               child: Align(
-                  alignment: Alignment.bottomCenter,
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 60.0),
                   child: CustomButton(
                     loading: isLoading,
-                      onPressed: () async {
-                      if(documentTypeController.text.isEmpty){
-                        showSnackbar(context, AppColor.failedSnackbarColor, 'Please enter a document type');
-                      }else if(keyPointsController.text.isEmpty){
-                        showSnackbar(context, AppColor.failedSnackbarColor, 'Please enter key points to note for document generation');
-                      }else{
+                    onPressed: () async {
+                      if (documentTypeController.text.isEmpty) {
+                        showSnackbar(context, AppColor.failedSnackbarColor,
+                            'Please enter a document type');
+                      } else if (keyPointsController.text.isEmpty) {
+                        showSnackbar(context, AppColor.failedSnackbarColor,
+                            'Please enter key points to note for document generation');
+                      } else {
                         setState(() {
                           isLoading = true;
                         });
-                        String input = 'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and limit the scope of this conversation to the creation of this document';
-                        List response = await ApiImplementation.getResponse(input);
-                        if(response[1]){
+                        String input =
+                            'Create a ${documentTypeController.text} using the following key points: ${keyPointsController.text} and limit the scope of this conversation to the creation of this document';
+                        List response =
+                            await ApiImplementation.getResponse(input);
+                        if (response[1]) {
                           setState(() {
                             isLoading = false;
                           });
-                          if(!mounted) return;
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> RefineDocument(rawInput: input, keyPoints: keyPointsController.text, documentType: documentTypeController.text, generatedText: response[0])));
+                          if (!mounted) return;
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => RefineDocument(
+                                      rawInput: input,
+                                      keyPoints: keyPointsController.text,
+                                      documentType: documentTypeController.text,
+                                      generatedText: response[0])));
                         }
-
                       }
-                      },
+                    },
                     buttonText: 'Create Document',
                     backgroundColor: AppColor.secondaryColor,
-                  )),
+                  ),
+                ),
+              ),
             ),
+            SizedBox(height: 15.h,)
           ],
         ),
       ),
     );
   }
 }
-                  
