@@ -1,6 +1,6 @@
 # Legal Documents Generator
 
-This is the codebase for a Legal Documents Generator app, developed by @Marshal Moses, @VCTR and @Olankan.
+This is the codebase for a Legal Documents Generator app, developed by [@Marshal Moses](https://github.com/shockwavetech), [@VCTR](https://github.com/vicsam) and [@Olankan](https://github.com/olankan). 
 
 > **Note**: If you're new to this codebase, we recommend reading the comments provided in the code to gain a better understanding of how it works under the hood.
 
