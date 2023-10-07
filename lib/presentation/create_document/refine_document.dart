@@ -1,7 +1,12 @@
+// ignore_for_file: unnecessary_string_interpolations
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:legal_document_generator/data/api_implementation.dart';
 import 'package:legal_document_generator/presentation/create_document/preview_doc.dart';
 import 'package:legal_document_generator/presentation/create_document/widgets/chat_response.dart';
+import 'package:legal_document_generator/presentation/pdf_screen/pdf_Screen.dart';
 import '../../components/constants/app_colors.dart';
 import '../../components/constants/widgets/custom_textfield.dart';
 import '../router/base_navigator.dart';
@@ -76,11 +81,43 @@ class _RefineDocumentState extends State<RefineDocument> {
         ),
         actions: [
           TextButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> PreviewDocument(document: finalOutput)));
-              },
-              child: const Text('Preview Document')
-          )
+            onPressed: Platform.isIOS
+                ? () async {
+                    final pdfFile = await Pdf_Api.generateCenteredText(
+                        documentBody: '${widget.keyPoints}',
+                        documentHeader: '${widget.documentType}');
+
+                    Pdf_Api.openFile(pdfFile);
+                    Future.delayed(const Duration(milliseconds: 1000), () {
+                      Navigator.pop(context);
+                    });
+                  }
+                : Platform.isAndroid
+                    ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PreviewDocument(document: finalOutput),
+                          ),
+                        );
+                      }
+                    : null,
+            child: Platform.isIOS
+                ? const Text(
+                    'Convert to PDF',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 116, 77, 123), fontSize: 14),
+                  )
+                : Platform.isAndroid
+                    ? const Text(
+                        'Preview Document',
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 116, 77, 123),
+                            fontSize: 14),
+                      )
+                    : Text(''),
+          ),
         ],
       ),
       body: Padding(
@@ -95,34 +132,30 @@ class _RefineDocumentState extends State<RefineDocument> {
               ),
             ),
             CustomTextField(
-                controller: controller,
-                hintText: 'Message',
-                label: '',
-                icon: Icons.send,
-                iconAction: ()async{
-                  userInput = controller.text;
-                  controller.text = '';
-                  setState(() {
-                    messages.add(
-                      ChatResponse(
-                          content: userInput
-                      ),
-                    );
-                  });
-                  final response = await ApiImplementation.getCompletions(history, userInput,);
-                  finalOutput = response;
+              controller: controller,
+              hintText: 'Message',
+              label: '',
+              icon: Icons.send,
+              iconAction: () async {
+                userInput = controller.text;
+                controller.text = '';
+                setState(() {
                   messages.add(
-                    ChatResponse(
-                        isUser: false,
-                        content: response
-                    ),
+                    ChatResponse(content: userInput),
                   );
-                  history.add(userInput);
-                  setState(() {});
-
-                },
-            ),
-
+                });
+                final response = await ApiImplementation.getCompletions(
+                  history,
+                  userInput,
+                );
+                finalOutput = response;
+                messages.add(
+                  ChatResponse(isUser: false, content: response),
+                );
+                history.add(userInput);
+                setState(() {});
+              },
+            ),  SizedBox(height: 15,)
           ],
         ),
       ),

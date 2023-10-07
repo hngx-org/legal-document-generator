@@ -6,24 +6,29 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
 
 class Pdf_Api {
-  // static const String routeName = "pdf-screen";
-  static Future<File> generateCenteredText(String text) async {
+  String documentHeader;
+  String documentBody;
+
+  Pdf_Api({required this.documentHeader, required this.documentBody});
+
+  static Future<File> generateCenteredText(
+      {required String documentHeader, required String documentBody}) async {
     final pdf = pw.Document();
     pdf.addPage(
       pw.MultiPage(
           build: ((context) => <pw.Widget>[
                 pw.Header(
                   child: pw.Center(
-                    child: pw.Text('Legal Document',
+                    child: pw.Text(documentHeader,
                         style: pw.TextStyle(
-                          fontSize: 28,
-                        )),
+                            fontSize: 35, fontBold: pw.Font.timesItalic())),
                   ),
                 ),
-                pw.Paragraph(text: pw.LoremText().paragraph(120), style: pw.TextStyle(fontSize: 18)),
+                pw.Paragraph(
+                    text: documentBody, style: pw.TextStyle(fontSize: 25)),
               ])),
     );
-    return saveDocument(name: 'Legal_Document.pdf', pdf: pdf);
+    return saveDocument(name: '$documentHeader.pdf', pdf: pdf);
   }
 
   static Future<File> saveDocument(
